@@ -184,7 +184,7 @@ async def handler(event):
             await event.reply(f"✅ Рассылка запущена каждые {hours} ч.")
             return
 
-    if text == "шоп":
+    if text == "прайс":
         await client.send_message(event.chat_id, SHOP_TEXT)
         return
 
