@@ -6,7 +6,7 @@ from telethon import TelegramClient, events
 API_ID = 31293148
 API_HASH = "ecd23c40a80ac0ccd68b7095d39913b2"
 
-GROUP_ID = -1003746160928  # группа где следим за вступлениями
+GROUP_ID = --1002314819290  # группа где следим за вступлениями
 
 broadcast_interval_hours = None
 broadcast_task = None
