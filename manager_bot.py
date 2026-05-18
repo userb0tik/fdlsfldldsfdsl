@@ -53,20 +53,17 @@ async def cmd_start(message: types.Message):
         return
     await message.answer(
         "🤖 <b>Панель управления юзерботом</b>\n\n"
-        "/стоп_список — список стоп-слов\n"
-        "/стоп_добавить [слово] — добавить стоп-слово\n"
-        "/стоп_удалить [слово] — удалить стоп-слово\n\n"
-        "/прайс — показать текущий прайс\n"
-        "/прайс_изменить — изменить прайс\n\n"
-        "/участники — сколько участников запомнено\n\n"
-        "/рассылка [часы] — запустить рассылку\n"
-        "/рассылка_стоп — остановить рассылку\n"
-        "/статус — текущий статус",
+        "/stoplist — список стоп-слов\n"
+        "/stopadd [слово] — добавить стоп-слово\n"
+        "/stopdelete [слово] — удалить стоп-слово\n\n"
+        "/price — показать текущий прайс\n"
+        "/pricechange — изменить прайс\n\n"
+        "/status — текущий статус",
         parse_mode="HTML"
     )
 
 
-@dp.message(Command("стоп_список"))
+@dp.message(Command("stoplist"))
 async def cmd_stop_list(message: types.Message):
     if not is_admin(message):
         return
@@ -79,7 +76,7 @@ async def cmd_stop_list(message: types.Message):
     await message.answer(text, parse_mode="HTML")
 
 
-@dp.message(Command("стоп_добавить"))
+@dp.message(Command("stopadd"))
 async def cmd_stop_add(message: types.Message):
     if not is_admin(message):
         return
@@ -97,7 +94,7 @@ async def cmd_stop_add(message: types.Message):
     await message.answer(f"✅ Слово «{word}» добавлено в стоп-список.")
 
 
-@dp.message(Command("стоп_удалить"))
+@dp.message(Command("stopdelete"))
 async def cmd_stop_remove(message: types.Message):
     if not is_admin(message):
         return
@@ -115,7 +112,7 @@ async def cmd_stop_remove(message: types.Message):
     await message.answer(f"✅ Слово «{word}» удалено из стоп-списка.")
 
 
-@dp.message(Command("прайс"))
+@dp.message(Command("price"))
 async def cmd_price(message: types.Message):
     if not is_admin(message):
         return
@@ -123,7 +120,7 @@ async def cmd_price(message: types.Message):
     await message.answer(f"📋 <b>Текущий прайс:</b>\n\n{settings['shop_text']}", parse_mode="HTML")
 
 
-@dp.message(Command("прайс_изменить"))
+@dp.message(Command("pricechange"))
 async def cmd_price_change(message: types.Message):
     if not is_admin(message):
         return
@@ -138,7 +135,7 @@ async def cmd_price_change(message: types.Message):
     await message.answer("✅ Прайс обновлён!")
 
 
-@dp.message(Command("участники"))
+@dp.message(Command("members"))
 async def cmd_members(message: types.Message):
     if not is_admin(message):
         return
@@ -175,7 +172,7 @@ async def cmd_broadcast_stop(message: types.Message):
     await message.answer("🛑 Рассылка остановлена.")
 
 
-@dp.message(Command("статус"))
+@dp.message(Command("status"))
 async def cmd_status(message: types.Message):
     if not is_admin(message):
         return
