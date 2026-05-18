@@ -15,14 +15,17 @@ MEMBERS_FILE = "members.json"
 
 TRIGGER_PHRASE = "если данная заявка подходит под ваш ассортимент"
 
+# Стоп-слова — бот игнорирует сообщения с ними
+STOP_WORDS = ["меф", "мяу", "скорость", "ск"]
+
 EMOJIS = ["🔥", "⚡", "🎯", "💥", "🚀", "👊", "💎", "🎪", "🌟", "💫",
           "🎭", "🏆", "🎲", "🎸", "🎺", "🎻", "🎹", "🥁", "🎷", "🎵"]
 
 KEYWORDS = {
-    "ст": "сорт на старте @burgerkassa",
-    "стр": "на старте @burgerkassa",
-    "вх": "на старте @burgerkassa",
-    "гш": "на старте @burgerkassa",
+    "ст": "сорт на старте @burgerkassir",
+    "стр": "на старте @burgerkassir",
+    "вх": "на старте @burgerkassir",
+    "гш": "на старте @burgerkassir",
     "команды": """📋 Список команд:
 
 ст
@@ -150,6 +153,12 @@ async def handler(event):
 
     text = event.message.text.strip().lower()
     print(f"Сообщение: '{text}'")
+
+    # Проверка стоп-слов — если есть хоть одно, игнорируем
+    for stop_word in STOP_WORDS:
+        if stop_word in text:
+            print(f"Стоп-слово найдено: '{stop_word}' — игнорирую")
+            return
 
     # Реакция на заявки
     if TRIGGER_PHRASE in text:
